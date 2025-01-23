@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase_form</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicon@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <div class="box">
+    <div class="wrapper">
+    <div class="form">
+    <h1>Register</h1>
+        <form>
+            <div class="input-box">
+                <input type="text" value="" id="FirstName" name="FirstName" placeholder="FirstName" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" value="" id="LastName" name="LastName" placeholder="LastName" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" value="" id="Username" name="Username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" value="" id="Password" name="Password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>  
+            </div>
+            
+            <button type="submit" value="submit" class="btn" id="submit">Register Now</button>
+
+            <div class="register-link"></div>
+
+            <p>Already have an account? <a href="index.html">Login</a></p>
+        
+        </form>
+
+    </div>
+    </div>
+    </div>
+
+<script type="module">
+               // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+  import { getDatabase, ref, set,get, child } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+  
+ // Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAMYnuLJUFn44jTdXzL1FgnlJaHXbUJtSY",
+  authDomain: "translator-registrationdb.firebaseapp.com",
+  databaseURL: "https://translator-registrationdb-default-rtdb.firebaseio.com",
+  projectId: "translator-registrationdb",
+  storageBucket: "translator-registrationdb.firebasestorage.app",
+  messagingSenderId: "1026275491194",
+  appId: "1:1026275491194:web:8cc28049314196dc4f6ac3"
+};
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  //get ref to database services
+  const db = getDatabase(app);
+
+  document.getElementById("submit").addEventListener('click', function(e){
+    e.preventDefault();
+   set(ref(db, 'user/' + document.getElementById("FirstName").value),
+   {
+
+    FirstName: document.getElementById("FirstName").value,
+    LastName: document.getElementById("LastName").value,
+    Username: document.getElementById("Username").value,
+    Password: document.getElementById("Password").value
+
+   });
+    alert("Registration Successfully Done  !")
+  })
+</script>
+</body>
+</html>
